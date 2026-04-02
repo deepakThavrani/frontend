@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-primary: #E02222;
+  --color-primary-dark: #c41e1e;
+  --color-dark: #000000;
+  --color-light: #ffffff;
+  --color-cream: #FFFEED;
+  --color-text: #171200;
+  --color-gray: #5f6360;
+  --font-sans: var(--font-work-sans), sans-serif;
+  --font-heading: var(--font-work-sans), sans-serif;
+  --font-serif: var(--font-eb-garamond), serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: var(--font-work-sans), sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E02222;
+  border-radius: 4px;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideFromLeft {
+  from { opacity: 0; transform: translateX(-100%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideFromRight {
+  from { opacity: 0; transform: translateX(100%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.6s ease-out forwards;
+}
+
+.animate-slide-from-left {
+  animation: slideFromLeft 1s ease-out forwards;
+}
+
+.animate-slide-from-right {
+  animation: slideFromRight 1s ease-out forwards;
+}
+
+.font-serif-italic {
+  font-family: var(--font-eb-garamond), serif;
+  font-style: italic;
+  letter-spacing: -0.02em;
+}
