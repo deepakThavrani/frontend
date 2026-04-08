@@ -16,15 +16,15 @@ export default function ServicesPage() {
   return (
     <div className="pt-[108px]">
       {/* Hero - Exterior Rendering */}
-      <section className="relative bg-white text-black min-h-screen md:h-screen">
-        <div className="grid grid-cols-1 md:grid-cols-2 h-full">
-          <div className="flex items-center justify-center h-full px-8">
+      <section className="relative bg-white text-black overflow-hidden" style={{ height: "calc(100vh - 10px)" }}>
+        <div className="flex" style={{ height: "100%" }}>
+          <div className="w-1/2 flex items-center" style={{ paddingLeft: "8vw", paddingRight: "4vw" }}>
             <ScrollReveal>
-              <div className="max-w-sm">
-                <h1 className="text-3xl md:text-4xl font-bold mb-6 md:mb-16 text-[#171200]">
+              <div className="max-w-md">
+                <h1 className="text-3xl md:text-4xl font-semibold mb-6 md:mb-10 text-[#171200]">
                   Exterior Rendering Services
                 </h1>
-                <p className="text-[#5f6360] leading-relaxed font-extralight">
+                <p className="text-black leading-relaxed font-light text-base md:text-lg">
                   We specialize in exterior rendering and architectural
                   visualization services that bring clarity, precision, and depth
                   to your designs. From residential elevations to large-scale
@@ -34,18 +34,15 @@ export default function ServicesPage() {
               </div>
             </ScrollReveal>
           </div>
-          <div className="flex items-center justify-center p-8">
-            <ScrollReveal delay={200}>
-              <Image
+          <div className="w-1/2" style={{ height: "100%", display: "flex", flexDirection: "column" }}>
+            <div style={{ height: 150 }} />
+            <div style={{ flex: 1, marginLeft: 16, overflow: "hidden", borderTopLeftRadius: 40, borderBottomLeftRadius: 40 }}>
+              <img
                 src="https://static.wixstatic.com/media/5dbb31_ab4c046bdfc8453988af86c797e8a3f6~mv2.jpg/v1/fill/w_800,h_444,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/5dbb31_ab4c046bdfc8453988af86c797e8a3f6~mv2.jpg"
                 alt="Exterior rendering"
-                width={800}
-                height={500}
-                sizes="(max-width: 768px) 100vw, 50vw"
-                priority
-                className="w-full h-full object-cover rounded-3xl transition-transform duration-700 hover:scale-110"
-              />
-            </ScrollReveal>
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            />
+            </div>
           </div>
         </div>
       </section>
@@ -61,7 +58,7 @@ export default function ServicesPage() {
                 width={800}
                 height={500}
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="w-full max-h-[70vh] object-cover rounded-3xl transition-transform duration-700 hover:scale-110"
+                className="w-full max-h-[70vh] object-cover  transition-transform duration-700 hover:scale-110"
               />
             </ScrollReveal>
           </div>
@@ -71,7 +68,7 @@ export default function ServicesPage() {
                 <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-16 text-[#171200]">
                   Interior Rendering Services
                 </h2>
-                <p className="text-[#5f6360] leading-relaxed font-extralight">
+                <p className="text-black leading-relaxed font-light text-base md:text-lg">
                   We combine creativity, precision, and commitment to deliver
                   visualisation services that exceed expectations. Whether it&apos;s
                   a modern bedroom or a restaurant project, we ensure
@@ -93,7 +90,7 @@ export default function ServicesPage() {
                 <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-16 text-[#171200]">
                   Walkthrough Services
                 </h2>
-                <p className="text-[#5f6360] leading-relaxed font-extralight">
+                <p className="text-black leading-relaxed font-light text-sm md:text-base">
                   you get more than just a render, you get a partner who values your
                   time, understands your vision, and works tirelessly to deliver
                   perfection.
@@ -108,7 +105,7 @@ export default function ServicesPage() {
               muted
               loop
               playsInline
-              className="w-full max-h-[70vh] object-cover rounded-3xl transition-transform duration-700 hover:scale-110"
+              className="w-full max-h-[70vh] object-cover  transition-transform duration-700 hover:scale-110"
               poster="https://static.wixstatic.com/media/5dbb31_35962a1081cb471989146e2144e74de0f000.jpg/v1/fill/w_700,h_394,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/5dbb31_35962a1081cb471989146e2144e74de0f000.jpg"
             >
               <source

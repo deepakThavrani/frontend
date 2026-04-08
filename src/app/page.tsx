@@ -73,7 +73,7 @@ export default function Home() {
 
         {/* LEXXUS - top left */}
         <h1
-          className="absolute top-[18%] left-0 text-4xl md:text-[5rem] lg:text-[7rem] font-bold tracking-wider text-white leading-none z-10 uppercase"
+          className="absolute top-[18%] left-[5%] text-3xl md:text-[4rem] lg:text-[5.5rem] font-bold tracking-wider text-white leading-none z-10 uppercase"
           style={{ animation: 'slideFromLeft 1.2s ease-out forwards', opacity: 0 }}
         >
           LEXXUS
@@ -81,14 +81,14 @@ export default function Home() {
 
         {/* MOON - bottom right */}
         <span
-          className="absolute bottom-[12%] right-0 text-4xl md:text-[5rem] lg:text-[7rem] font-bold tracking-wider text-white leading-none z-10 uppercase"
+          className="absolute bottom-[12%] right-[5%] text-3xl md:text-[4rem] lg:text-[5.5rem] font-bold tracking-wider text-white leading-none z-10 uppercase"
           style={{ animation: 'slideFromRight 1.2s ease-out forwards', opacity: 0 }}
         >
           MOON
         </span>
 
         {/* Tagline - bottom center */}
-        <p className="absolute bottom-[5%] left-1/2 -translate-x-1/2 text-base md:text-xl lg:text-2xl text-white font-light tracking-widest z-10 whitespace-nowrap font-serif-italic">
+        <p className="absolute bottom-[5%] left-1/2 -translate-x-1/2 text-xl md:text-2xl lg:text-3xl text-white font-semibold tracking-wider z-10 whitespace-nowrap">
           &ldquo;Your Vision, Our 3D Expertise&rdquo;
         </p>
       </section>
@@ -103,7 +103,7 @@ export default function Home() {
       ═══════════════════════════════════════════════════════════ */}
       <WhiteSpecializeSection />
 
-      {/* No gap between sections */}
+      <div className="h-12 md:h-20 bg-white" />
 
       {/* ═══════════════════════════════════════════════════════════
           SECTION 2: Why Choose Us — Stacked Sticky Cards
@@ -117,12 +117,12 @@ export default function Home() {
       <VideoSection />
 
       {/* Ready to Transform - black section */}
-      <section className="bg-black px-6 md:px-16" style={{ paddingTop: 80, paddingBottom: 80 }}>
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white uppercase tracking-wide leading-tight">
+      <section className="bg-black" style={{ paddingTop: 80, paddingBottom: 80, paddingLeft: "5vw", paddingRight: "5vw" }}>
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white uppercase tracking-wide leading-tight whitespace-nowrap">
             READY TO TRANSFORM
           </h2>
-          <p className="text-white/60 font-light text-base md:text-lg leading-relaxed max-w-lg">
+          <p className="text-white font-light text-base md:text-lg leading-relaxed max-w-sm">
             we combine creativity, precision, and commitment to deliver visualisation services. we ensure international-standard high-quality renders, on time and within your budget.
           </p>
         </div>

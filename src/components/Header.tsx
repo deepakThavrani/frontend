@@ -39,16 +39,16 @@ export default function Header() {
       className="fixed top-0 left-0 right-0 z-50 bg-black text-white transition-transform duration-300"
       style={{ transform: hidden ? "translateY(-100%)" : "translateY(0)" }}
     >
-      <div className="relative w-full pl-6 lg:pl-12 pr-16 lg:pr-24 h-[108px] flex items-center justify-between">
+      <div className="relative w-full h-[103px] flex items-center justify-between" style={{ paddingLeft: "12px", paddingRight: "clamp(40px, 5vw, 120px)" }}>
         {/* Logo */}
-        <Link href="/" className="flex items-center shrink-0 z-10">
+        <Link href="/" className="flex items-center shrink-0 z-10" style={{ marginTop: "8px" }}>
           <Image
             src="https://static.wixstatic.com/media/5dbb31_9f4af6ed7b9945189e6873256cb309c4~mv2.png/v1/fill/w_214,h_78,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/5.png"
             alt="Lexxusmoon Logo"
             width={214}
             height={78}
             priority
-            className="h-[80px] w-auto object-contain"
+            className="h-[90px] w-auto object-contain"
           />
         </Link>
 
@@ -73,18 +73,21 @@ export default function Header() {
         {/* CTA Button */}
         <Link
           href="/get-a-quote"
-          className="hidden md:flex bg-[#E03A3A] text-white justify-center text-[13px] font-medium tracking-[0.1em] hover:bg-[#c42e2e] transition-colors items-center gap-3 shrink-0 z-10 w-[180px] h-[46px] rounded-md mr-4 lg:mr-10"
+          className="group hidden md:flex bg-[#C62828] text-white justify-center text-[13px] font-medium tracking-[0.1em] hover:bg-white hover:text-black transition-all duration-300 items-center gap-3 shrink-0 z-10 w-[160px] h-[40px] rounded-md"
         >
           CONTACT US
           <svg
-            width="18"
-            height="18"
+            width="16"
+            height="16"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
             strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="transition-transform duration-500 group-hover:rotate-[315deg]"
           >
-            <path d="M7 7l10 10M17 7v10H7" />
+            <path d="M7 7L17 17M17 17H7M17 17V7" />
           </svg>
         </Link>
 

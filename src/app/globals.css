@@ -35,12 +35,29 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #111;
+  background: #f0f0f0;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #E02222;
+  background: #bbb;
   border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+.country-dropdown-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.country-dropdown-list::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+
+.country-dropdown-list::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
 }
 
 @keyframes fadeInUp {

@@ -15,27 +15,27 @@ export default function Footer() {
   return (
     <footer className="bg-white text-[#171200]">
       {/* Main footer content */}
-      <div style={{ maxWidth: 1400, margin: '0 auto' }} className="px-5 md:px-10 pt-8 md:pt-10 pb-5">
+      <div style={{ maxWidth: 1400, margin: '0 auto', paddingLeft: "5vw", paddingRight: "5vw", paddingTop: 40, paddingBottom: 20 }}>
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           {/* Left - Logo + Tagline */}
           <div className="flex items-center gap-4">
             <Image
               src="https://static.wixstatic.com/media/5dbb31_7933a069d1794329b92af48114fa4cbf~mv2.png/v1/fill/w_60,h_60,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/6.png"
               alt="Lexxusmoon logo"
-              width={60}
-              height={60}
+              width={70}
+              height={70}
               style={{ borderRadius: '50%', objectFit: 'cover' }}
             />
             <div>
-              <p style={{ fontWeight: 700, fontSize: 20, color: '#171200' }}>Lexxusmoon</p>
-              <p style={{ fontSize: 13, color: '#999', fontStyle: 'italic' }}>
+              <p style={{ fontWeight: 700, fontSize: 24, color: '#000' }}>Lexxusmoon</p>
+              <p style={{ fontSize: 15, color: '#333', fontStyle: 'italic' }}>
                 Your Vision, Our 3D Expertise
               </p>
             </div>
           </div>
 
           {/* Center - Social Icons */}
-          <div className="flex gap-5">
+          <div className="flex gap-6">
             {socialLinks.map((social) => (
               <Link
                 key={social.label}
@@ -46,10 +46,10 @@ export default function Footer() {
                 aria-label={social.label}
               >
                 <svg
-                  width={24}
-                  height={24}
+                  width={28}
+                  height={28}
                   viewBox="0 0 24 24"
-                  fill="#171200"
+                  fill="#000"
                 >
                   <path d={social.icon} />
                 </svg>
@@ -58,19 +58,19 @@ export default function Footer() {
           </div>
 
           {/* Right - Contact Info */}
-          <div className="text-center md:text-right text-sm">
-            <p style={{ fontWeight: 600, color: '#171200' }}>info@lexxusmoon.com</p>
-            <p style={{ color: '#666' }}>Tel. +91 77339 99372</p>
-            <p style={{ color: '#666' }}>Office 505, Trimurty Tower</p>
-            <p style={{ color: '#666' }}>Jaipur-302012</p>
+          <div className="text-center md:text-right" style={{ fontSize: 15 }}>
+            <p style={{ fontWeight: 700, color: '#000' }}>info@lexxusmoon.com</p>
+            <p style={{ color: '#333' }}>Tel. +91 77339 99372</p>
+            <p style={{ color: '#333' }}>Office 505, Trimurty Tower</p>
+            <p style={{ color: '#333' }}>Jaipur-302012</p>
           </div>
         </div>
       </div>
 
       {/* Divider + Copyright */}
-      <div style={{ maxWidth: 1400, margin: '0 auto' }} className="px-5 md:px-10">
+      <div style={{ maxWidth: 1400, margin: '0 auto', paddingLeft: "5vw", paddingRight: "5vw" }}>
         <div style={{ borderTop: '1px solid #e0e0e0', paddingTop: 20, paddingBottom: 20, textAlign: 'center' }}>
-          <p style={{ fontSize: 12, color: '#999' }}>
+          <p style={{ fontSize: 13, color: '#555' }}>
             &copy; 2025 by Lexxusmoon of Site. Created on Wix Studio.
           </p>
         </div>

@@ -75,8 +75,8 @@ export default function FAQsPage() {
   return (
     <div style={{ paddingTop: "108px" }}>
       {/* Hero Banner */}
-      <section className="flex items-center justify-center bg-white px-4 py-6 md:px-[60px] md:py-[30px] h-[50vh] md:h-[calc(100vh-108px)]">
-        <div className="relative w-full h-full rounded-2xl overflow-hidden">
+      <section className="flex items-center justify-center bg-white h-[50vh] md:h-[calc(100vh-108px)]" style={{ padding: "30px 60px" }}>
+        <div className="relative w-full h-full overflow-hidden">
           <Image
             src="https://static.wixstatic.com/media/5dbb31_c701e5e867964006a1b1448a3145d18e~mv2.jpg/v1/fill/w_1920,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/5dbb31_c701e5e867964006a1b1448a3145d18e~mv2.jpg"
             alt="Architectural brilliance"
@@ -85,8 +85,8 @@ export default function FAQsPage() {
             priority
             className="object-cover object-bottom"
           />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center leading-tight overflow-hidden">
+          <div className="absolute inset-0 flex items-end justify-end p-8 md:p-16">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-right leading-tight overflow-hidden">
               <span
                 className="block transition-all duration-1000 ease-out"
                 style={{
@@ -112,7 +112,7 @@ export default function FAQsPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="bg-white text-black px-4 py-12 md:px-[10%] md:py-[80px]">
+      <section className="bg-white text-black px-4 py-12 md:px-[10%]" style={{ paddingTop: 80, paddingBottom: 120 }}>
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
             <h1 className="text-3xl md:text-4xl font-bold leading-tight text-[#171200]">

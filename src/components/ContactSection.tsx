@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import api from "@/lib/api";
+import CountryCodeDropdown from "./CountryCodeDropdown";
 
 export default function ContactSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -10,24 +11,40 @@ export default function ContactSection() {
     firstName: "",
     lastName: "",
     email: "",
+    countryCode: "+91",
     phone: "",
     message: "",
   });
 
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [submitMsg, setSubmitMsg] = useState("");
 
   const [success, setSuccess] = useState(false);
 
+  const validate = () => {
+    const errs: Record<string, string> = {};
+    if (!formData.firstName.trim()) errs.firstName = "Enter a first name.";
+    if (!formData.email.trim()) errs.email = "Enter an email address like example@mysite.com.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) errs.email = "Enter an email address like example@mysite.com.";
+    if (!formData.phone.trim()) errs.phone = "Enter a phone number.";
+    else if (!/^\d{7,15}$/.test(formData.phone.replace(/\s/g, ""))) errs.phone = "Enter a phone number.";
+    if (!formData.message.trim()) errs.message = "Enter an answer.";
+    return errs;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const errs = validate();
+    setErrors(errs);
+    if (Object.keys(errs).length > 0) return;
     setSubmitting(true);
     setSubmitMsg("");
     setSuccess(false);
     try {
-      await api.post("/contacts", formData);
+      await api.post("/contacts", { ...formData, phone: `${formData.countryCode} ${formData.phone}` });
       setSuccess(true);
-      setFormData({ firstName: "", lastName: "", email: "", phone: "", message: "" });
+      setFormData({ firstName: "", lastName: "", email: "", countryCode: "+91", phone: "", message: "" });
     } catch {
       setSubmitMsg("Something went wrong. Please try again.");
     }
@@ -48,17 +65,24 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="bg-white"
-      style={{
-        backgroundImage:
-          "linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px)",
-        backgroundSize: "40px 40px",
-      }}
+      className="bg-white relative"
     >
+      {/* Grid on right side only */}
+      <div
+        className="absolute top-0 bottom-0 right-0"
+        style={{
+          width: "25%",
+          backgroundImage:
+            "linear-gradient(rgba(0,0,0,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.08) 1px, transparent 1px)",
+          backgroundSize: "50px 50px",
+          maskImage: "linear-gradient(to bottom, transparent 5%, black 25%, black 75%, transparent 95%)",
+          WebkitMaskImage: "linear-gradient(to bottom, transparent 5%, black 25%, black 75%, transparent 95%)",
+        }}
+      />
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row">
         {/* Left - Video */}
         <div
-          className="md:w-[42%] relative cursor-pointer flex items-center justify-center"
+          className="md:w-[50%] relative cursor-pointer flex items-center justify-center"
           onClick={toggleVideo}
           style={{ minHeight: 500 }}
         >
@@ -86,7 +110,7 @@ export default function ContactSection() {
         </div>
 
         {/* Right - Contact Form */}
-        <div className="md:w-[58%] py-16 md:py-24 px-8 md:px-16">
+        <div className="md:w-[50%] py-12 md:py-16 px-8 md:px-14 relative">
           {success ? (
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", minHeight: 400 }}>
               <div style={{
@@ -124,7 +148,7 @@ export default function ContactSection() {
             </div>
           ) : (
           <>
-          <h2 style={{ fontSize: 36, fontWeight: 700, color: '#171200', marginBottom: 32 }}>
+          <h2 className="relative" style={{ fontSize: 32, fontWeight: 700, color: '#171200', marginBottom: 28 }}>
             Contact us
           </h2>
 
@@ -142,31 +166,31 @@ export default function ContactSection() {
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form noValidate onSubmit={handleSubmit} className="space-y-6 relative bg-white" style={{ maxWidth: 520, zIndex: 1, padding: "10px" }}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label style={{ fontSize: 13, fontWeight: 600, color: '#E02222', display: 'block', marginBottom: 8 }}>
+                <label style={{ fontSize: 12, fontWeight: 600, color: '#171200', display: 'block', marginBottom: 6 }}>
                   First name <span>*</span>
                 </label>
                 <input
                   type="text"
                   placeholder="First name"
-                  required
                   value={formData.firstName}
-                  onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                  onChange={(e) => { setFormData({ ...formData, firstName: e.target.value }); setErrors({ ...errors, firstName: "" }); }}
                   style={{
                     width: '100%',
-                    border: '1px solid #ccc',
-                    padding: '12px 14px',
+                    border: `1px solid ${errors.firstName ? '#dc2626' : '#ccc'}`,
+                    padding: '10px 12px',
                     fontSize: 14,
                     color: '#171200',
                     outline: 'none',
                     background: 'transparent',
                   }}
                 />
+                {errors.firstName && <span style={{ fontSize: 12, color: '#dc2626', marginTop: 4, display: 'flex', alignItems: 'center', gap: 4 }}>ⓘ {errors.firstName}</span>}
               </div>
               <div>
-                <label style={{ fontSize: 13, fontWeight: 600, color: '#171200', display: 'block', marginBottom: 8 }}>
+                <label style={{ fontSize: 12, fontWeight: 600, color: '#171200', display: 'block', marginBottom: 6 }}>
                   Last name
                 </label>
                 <input
@@ -177,7 +201,7 @@ export default function ContactSection() {
                   style={{
                     width: '100%',
                     border: '1px solid #ccc',
-                    padding: '12px 14px',
+                    padding: '10px 12px',
                     fontSize: 14,
                     color: '#171200',
                     outline: 'none',
@@ -189,87 +213,96 @@ export default function ContactSection() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label style={{ fontSize: 13, fontWeight: 600, color: '#E02222', display: 'block', marginBottom: 8 }}>
+                <label style={{ fontSize: 12, fontWeight: 600, color: '#171200', display: 'block', marginBottom: 6 }}>
                   Email <span>*</span>
                 </label>
                 <input
                   type="email"
                   placeholder="Email"
-                  required
                   value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  onChange={(e) => { setFormData({ ...formData, email: e.target.value }); setErrors({ ...errors, email: "" }); }}
                   style={{
                     width: '100%',
-                    border: '1px solid #ccc',
-                    padding: '12px 14px',
+                    border: `1px solid ${errors.email ? '#dc2626' : '#ccc'}`,
+                    padding: '10px 12px',
                     fontSize: 14,
                     color: '#171200',
                     outline: 'none',
                     background: 'transparent',
                   }}
                 />
+                {errors.email && <span style={{ fontSize: 12, color: '#dc2626', marginTop: 4, display: 'flex', alignItems: 'center', gap: 4 }}>ⓘ {errors.email}</span>}
               </div>
               <div>
-                <label style={{ fontSize: 13, fontWeight: 600, color: '#E02222', display: 'block', marginBottom: 8 }}>
+                <label style={{ fontSize: 12, fontWeight: 600, color: '#171200', display: 'block', marginBottom: 6 }}>
                   Phone <span>*</span>
                 </label>
-                <input
-                  type="tel"
-                  placeholder="Phone"
-                  required
-                  value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  style={{
-                    width: '100%',
-                    border: '1px solid #ccc',
-                    padding: '12px 14px',
-                    fontSize: 14,
-                    color: '#171200',
-                    outline: 'none',
-                    background: 'transparent',
-                  }}
-                />
+                <div style={{ display: 'flex', alignItems: 'center', border: `1px solid ${errors.phone ? '#dc2626' : '#ccc'}` }}>
+                  <CountryCodeDropdown
+                    value={formData.countryCode}
+                    onChange={(code) => setFormData({ ...formData, countryCode: code })}
+                  />
+                  <div style={{ width: 1, height: 20, background: '#ccc' }} />
+                  <input
+                    type="tel"
+                    placeholder="Phone"
+                    value={formData.phone}
+                    onChange={(e) => { setFormData({ ...formData, phone: e.target.value }); setErrors({ ...errors, phone: "" }); }}
+                    style={{
+                      flex: 1,
+                      padding: '10px 12px',
+                      fontSize: 14,
+                      color: '#171200',
+                      outline: 'none',
+                      background: 'transparent',
+                      border: 'none',
+                    }}
+                  />
+                </div>
+                {errors.phone && <span style={{ fontSize: 12, color: '#dc2626', marginTop: 4, display: 'flex', alignItems: 'center', gap: 4 }}>ⓘ {errors.phone}</span>}
               </div>
             </div>
 
             <div>
-              <label style={{ fontSize: 13, fontWeight: 600, color: '#E02222', display: 'block', marginBottom: 8 }}>
+              <label style={{ fontSize: 12, fontWeight: 600, color: '#171200', display: 'block', marginBottom: 6 }}>
                 Message <span>*</span>
               </label>
               <textarea
                 placeholder="Message"
-                required
-                rows={5}
+                rows={6}
                 value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                onChange={(e) => { setFormData({ ...formData, message: e.target.value }); setErrors({ ...errors, message: "" }); }}
                 style={{
                   width: '100%',
-                  border: '1px solid #ccc',
-                  padding: '12px 14px',
-                  fontSize: 14,
+                  border: `1px solid ${errors.message ? '#dc2626' : '#ccc'}`,
+                  padding: '10px 12px',
+                  fontSize: 13,
                   color: '#171200',
                   outline: 'none',
                   resize: 'none',
                   background: 'transparent',
                 }}
               />
+              {errors.message && <span style={{ fontSize: 12, color: '#dc2626', marginTop: 4, display: 'flex', alignItems: 'center', gap: 4 }}>ⓘ {errors.message}</span>}
             </div>
 
             <div>
               <button
                 type="submit"
+                disabled={submitting}
                 style={{
                   backgroundColor: '#E02222',
                   color: '#fff',
                   padding: '14px 60px',
-                  fontSize: 14,
+                  fontSize: 13,
                   fontWeight: 600,
                   border: 'none',
-                  cursor: 'pointer',
+                  cursor: submitting ? 'not-allowed' : 'pointer',
                   letterSpacing: '0.05em',
+                  opacity: submitting ? 0.7 : 1,
                 }}
               >
-                Submit
+                {submitting ? 'Submitting...' : 'Submit'}
               </button>
             </div>
           </form>

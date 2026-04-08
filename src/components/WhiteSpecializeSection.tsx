@@ -1,21 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-const words = [
-  { text: "We", highlight: false },
-  { text: "Specialize", highlight: false },
-  { text: "In", highlight: false },
-  { text: "Delivering", highlight: false },
-  { text: "International", highlight: true },
-  { text: "Standard,", highlight: true },
-  { text: "High-Quality", highlight: false },
-  { text: "Renders", highlight: false },
-  { text: "For", highlight: false },
-  { text: "Architects,", highlight: false },
-  { text: "And", highlight: false },
-  { text: "Interior", highlight: false },
-  { text: "Designers.", highlight: false },
+const lines = [
+  ["We", "Specialize", "In", "Delivering"],
+  ["International", "Standard,", "High-Quality"],
+  ["Renders", "For", "Architects,", "And", "Interior"],
+  ["Designers."],
 ];
 
 export default function WhiteSpecializeSection() {
@@ -41,13 +32,15 @@ export default function WhiteSpecializeSection() {
   return (
     <>
       <section className="relative bg-white overflow-hidden">
-        {/* Grid pattern */}
+        {/* Grid pattern - only on edges, fades out in center */}
         <div
           className="absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px)",
-            backgroundSize: "40px 40px",
+              "linear-gradient(rgba(0,0,0,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.12) 1px, transparent 1px)",
+            backgroundSize: "50px 50px",
+            maskImage: "linear-gradient(to right, black 0%, transparent 20%, transparent 80%, black 100%)",
+            WebkitMaskImage: "linear-gradient(to right, black 0%, transparent 20%, transparent 80%, black 100%)",
           }}
         />
 
@@ -55,32 +48,43 @@ export default function WhiteSpecializeSection() {
           ref={sectionRef}
           className="relative z-10 min-h-screen flex items-center justify-center px-6"
         >
-          <p className="max-w-6xl mx-auto text-center text-[clamp(2rem,5.5vw,5rem)] font-light leading-[1.15] tracking-tight flex flex-wrap justify-center gap-x-[0.3em]">
-            {words.map((word, i) => (
-              <span
-                key={i}
-                className="inline-block overflow-hidden"
-              >
-                <span
-                  className={`inline-block ${word.highlight ? "text-[#e50914] font-medium" : "text-[#171200]"}`}
-                  style={{
-                    opacity: triggered ? 1 : 0,
-                    transform: triggered
-                      ? "translateY(0) rotate(0deg)"
-                      : "translateY(100%) rotate(3deg)",
-                    filter: triggered ? "blur(0px)" : "blur(4px)",
-                    transition: `opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${i * 60}ms, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${i * 60}ms, filter 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${i * 60}ms`,
-                  }}
-                >
-                  {word.text}
+          <p className="mx-auto text-center text-[clamp(1.5rem,4.5vw,4.5rem)] font-light leading-[1.15] tracking-tight whitespace-nowrap">
+            {lines.map((line, lineIdx) => {
+              const wordOffset = lines.slice(0, lineIdx).reduce((acc, l) => acc + l.length, 0);
+              return (
+                <span key={lineIdx} className="block">
+                  {line.map((word, i) => {
+                    const globalIdx = wordOffset + i;
+                    return (
+                      <span key={i} className="inline-block overflow-hidden">
+                        <span
+                          className="inline-block text-[#171200]"
+                          style={{
+                            opacity: triggered ? 1 : 0,
+                            transform: triggered
+                              ? "translateY(0) rotate(0deg)"
+                              : "translateY(100%) rotate(3deg)",
+                            filter: triggered ? "blur(0px)" : "blur(4px)",
+                            transition: `opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${globalIdx * 60}ms, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${globalIdx * 60}ms, filter 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${globalIdx * 60}ms`,
+                          }}
+                        >
+                          {word}
+                        </span>
+                      </span>
+                    );
+                  }).reduce<React.ReactNode[]>((acc, el, idx) => {
+                    if (idx > 0) acc.push(<span key={`space-${idx}`}>&nbsp;</span>);
+                    acc.push(el);
+                    return acc;
+                  }, [])}
                 </span>
-              </span>
-            ))}
+              );
+            })}
           </p>
         </div>
 
         {/* Why Choose Us heading */}
-        <div className="relative z-10 pt-20 md:pt-28 pb-0 px-6 text-center">
+        <div className="relative z-10 pt-20 md:pt-28 pb-20 md:pb-32 px-6 text-center">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#e50914] tracking-tight">
             Why Choose Us?
           </h2>

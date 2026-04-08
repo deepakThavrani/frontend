@@ -65,8 +65,8 @@ export default function ClientsSection({ logos }: ClientsSectionProps) {
               key={i}
               className="grayscale hover:grayscale-0 transition-all duration-500"
               style={{
-                width: '18%',
-                aspectRatio: '1',
+                width: '16%',
+                height: 200,
                 flexShrink: 0,
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(50px) scale(0.8)',
@@ -76,10 +76,10 @@ export default function ClientsSection({ logos }: ClientsSectionProps) {
               <Image
                 src={logo}
                 alt={`Client ${i + 1}`}
-                width={200}
-                height={200}
-                sizes="18vw"
-                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                width={400}
+                height={400}
+                sizes="15vw"
+                style={{ width: '100%', height: '100%', objectFit: 'contain', transform: 'scale(1.8)' }}
               />
             </div>
           ))}

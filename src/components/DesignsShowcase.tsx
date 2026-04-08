@@ -99,7 +99,7 @@ export default function DesignsShowcase() {
                 {cat.title}
               </h3>
               <p
-                className="text-[#5f6360] text-sm leading-relaxed font-extralight transition-all duration-300"
+                className="text-black text-sm leading-relaxed font-light transition-all duration-300"
                 style={{
                   opacity: hoveredIndex === i ? 1 : 0.7,
                 }}
@@ -198,7 +198,7 @@ export default function DesignsShowcase() {
                 {cat.title}
               </h3>
               <p
-                className="text-[#5f6360] text-sm leading-relaxed font-extralight transition-all duration-300"
+                className="text-black text-sm leading-relaxed font-light transition-all duration-300"
                 style={{
                   opacity: hoveredIndex === i + 2 ? 1 : 0.7,
                 }}
