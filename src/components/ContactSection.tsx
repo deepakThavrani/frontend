@@ -67,9 +67,9 @@ export default function ContactSection() {
       id="contact"
       className="bg-white relative"
     >
-      {/* Grid on right side only */}
+      {/* Grid on right side only - desktop */}
       <div
-        className="absolute top-0 bottom-0 right-0"
+        className="hidden md:block absolute top-0 bottom-0 right-0"
         style={{
           width: "25%",
           backgroundImage:
@@ -82,9 +82,8 @@ export default function ContactSection() {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row">
         {/* Left - Video */}
         <div
-          className="md:w-[50%] relative cursor-pointer flex items-center justify-center"
+          className="w-full md:w-[50%] relative cursor-pointer flex items-center justify-center min-h-[280px] md:min-h-[500px]"
           onClick={toggleVideo}
-          style={{ minHeight: 500 }}
         >
           <video
             ref={videoRef}
@@ -110,7 +109,7 @@ export default function ContactSection() {
         </div>
 
         {/* Right - Contact Form */}
-        <div className="md:w-[50%] py-12 md:py-16 px-8 md:px-14 relative">
+        <div className="w-full md:w-[50%] py-10 md:py-16 px-5 md:px-14 relative">
           {success ? (
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", minHeight: 400 }}>
               <div style={{

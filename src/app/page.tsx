@@ -73,7 +73,7 @@ export default function Home() {
 
         {/* LEXXUS - top left */}
         <h1
-          className="absolute top-[18%] left-[5%] text-3xl md:text-[4rem] lg:text-[5.5rem] font-bold tracking-wider text-white leading-none z-10 uppercase"
+          className="absolute top-[18%] left-[5%] text-[3.5rem] sm:text-[4.5rem] md:text-[4rem] lg:text-[5.5rem] font-bold tracking-wider text-white leading-none z-10 uppercase"
           style={{ animation: 'slideFromLeft 1.2s ease-out forwards', opacity: 0 }}
         >
           LEXXUS
@@ -81,14 +81,14 @@ export default function Home() {
 
         {/* MOON - bottom right */}
         <span
-          className="absolute bottom-[12%] right-[5%] text-3xl md:text-[4rem] lg:text-[5.5rem] font-bold tracking-wider text-white leading-none z-10 uppercase"
+          className="absolute bottom-[12%] right-[5%] text-[3.5rem] sm:text-[4.5rem] md:text-[4rem] lg:text-[5.5rem] font-bold tracking-wider text-white leading-none z-10 uppercase"
           style={{ animation: 'slideFromRight 1.2s ease-out forwards', opacity: 0 }}
         >
           MOON
         </span>
 
         {/* Tagline - bottom center */}
-        <p className="absolute bottom-[5%] left-1/2 -translate-x-1/2 text-xl md:text-2xl lg:text-3xl text-white font-semibold tracking-wider z-10 whitespace-nowrap">
+        <p className="absolute bottom-[5%] left-1/2 -translate-x-1/2 text-sm sm:text-lg md:text-2xl lg:text-3xl text-white font-semibold tracking-wider z-10 text-center px-4 md:whitespace-nowrap w-full md:w-auto">
           &ldquo;Your Vision, Our 3D Expertise&rdquo;
         </p>
       </section>
@@ -117,12 +117,12 @@ export default function Home() {
       <VideoSection />
 
       {/* Ready to Transform - black section */}
-      <section className="bg-black" style={{ paddingTop: 80, paddingBottom: 80, paddingLeft: "5vw", paddingRight: "5vw" }}>
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white uppercase tracking-wide leading-tight whitespace-nowrap">
+      <section className="bg-black py-14 md:py-20 px-6 md:px-[5vw]">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 md:gap-10">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white uppercase tracking-wide leading-tight md:whitespace-nowrap">
             READY TO TRANSFORM
           </h2>
-          <p className="text-white font-light text-base md:text-lg leading-relaxed max-w-sm">
+          <p className="text-white font-light text-sm md:text-lg leading-relaxed max-w-sm">
             we combine creativity, precision, and commitment to deliver visualisation services. we ensure international-standard high-quality renders, on time and within your budget.
           </p>
         </div>

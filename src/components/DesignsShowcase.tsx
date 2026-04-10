@@ -58,7 +58,7 @@ export default function DesignsShowcase() {
   return (
     <section
       ref={sectionRef}
-      className="bg-white text-black min-h-screen flex flex-col items-center px-6 pt-32 pb-20 overflow-hidden"
+      className="bg-white text-black md:min-h-screen flex flex-col items-center px-6 pt-24 pb-20 md:pt-32 md:pb-20 overflow-hidden"
     >
       {/* Heading */}
       <h2
@@ -74,9 +74,9 @@ export default function DesignsShowcase() {
       </h2>
 
       {/* 3-column layout */}
-      <div className="max-w-7xl w-full grid grid-cols-[1fr_1.5fr_1fr] gap-8 items-center flex-1">
+      <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-[1fr_1.5fr_1fr] gap-12 md:gap-8 items-center flex-1 mt-12 md:mt-0">
         {/* Left categories */}
-        <div className="flex flex-col gap-12">
+        <div className="flex flex-col gap-8 md:gap-12">
           {left.map((cat, i) => (
             <div
               key={i}
@@ -175,7 +175,7 @@ export default function DesignsShowcase() {
         </div>
 
         {/* Right categories */}
-        <div className="flex flex-col gap-12">
+        <div className="flex flex-col gap-8 md:gap-12">
           {right.map((cat, i) => (
             <div
               key={i}

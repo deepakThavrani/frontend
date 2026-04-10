@@ -105,11 +105,11 @@ export default function Header() {
       {mobileOpen && (
         <div className="md:hidden bg-black border-t border-gray-800 px-6 py-4">
           {navItems.map((item) => (
-            <Link key={item.href} href={item.href} className="block py-3 text-sm font-semibold tracking-wide border-b border-gray-800 text-white" onClick={() => setMobileOpen(false)}>{item.label}</Link>
+            <Link key={item.href} href={item.href} className="block py-4 text-base font-semibold tracking-[0.2em] border-b border-gray-800 text-white text-center" onClick={() => setMobileOpen(false)}>{item.label}</Link>
           ))}
           <Link
             href="/get-a-quote"
-            className="block mt-4 bg-[#E02222] text-white text-center px-5 py-3 text-sm font-semibold tracking-wide"
+            className="block mt-6 bg-[#E02222] text-white text-center px-5 py-4 text-base font-semibold tracking-[0.15em]"
             onClick={() => setMobileOpen(false)}
           >
             CONTACT US

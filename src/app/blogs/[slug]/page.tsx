@@ -114,12 +114,13 @@ export default function BlogDetailPage() {
     <div style={{ paddingTop: "108px" }}>
       {/* Cover Image with Back Button */}
       {blog.coverImage && (
-        <div className="w-full h-[50vh] overflow-hidden relative">
+        <div className="w-full relative" style={{ maxWidth: 1200, margin: "0 auto", padding: "0 5%" }}>
           <Image
             src={blog.coverImage}
             alt={blog.title}
-            fill
-            className="object-cover"
+            width={1200}
+            height={675}
+            className="w-full h-auto"
             priority
           />
           <button
@@ -127,7 +128,8 @@ export default function BlogDetailPage() {
             style={{
               position: "absolute",
               top: 24,
-              left: "5%",
+              left: "calc(5% + 20px)",
+              zIndex: 10,
               display: "flex",
               alignItems: "center",
               gap: 8,

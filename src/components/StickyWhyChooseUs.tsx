@@ -38,9 +38,9 @@ function AnimatedCard({ item, isLast, index, scrollProgress }: { item: WhyChoose
 
 
   return (
-    <section ref={ref} className="flex flex-col md:flex-row border-t-2 border-white" style={{ height: 'calc(100vh - 108px)' }}>
+    <section ref={ref} className="flex flex-col md:flex-row border-t-2 border-white min-h-[calc(100vh-108px)] md:h-[calc(100vh-108px)]">
       {/* Image */}
-      <div className={`relative md:w-[48%] ${item.bg} flex flex-col`} style={{ padding: "20px 20px 20px 0" }}>
+      <div className={`relative w-full md:w-[48%] ${item.bg} flex flex-col h-[40vh] md:h-auto p-5 md:p-5 md:pr-0 md:pl-0`}>
         <div className="relative overflow-hidden flex-1 rounded-sm">
           <img
             src={item.img}
@@ -50,11 +50,10 @@ function AnimatedCard({ item, isLast, index, scrollProgress }: { item: WhyChoose
         </div>
       </div>
       {/* Vertical line separator */}
-      <div className={`w-[3px] shrink-0 ${index === 1 ? 'bg-[#E02222]' : 'bg-white'}`} />
+      <div className={`hidden md:block w-[3px] shrink-0 ${index === 1 ? 'bg-[#E02222]' : 'bg-white'}`} />
       {/* Content — colored right panel */}
       <div
-        className={`${item.bg} text-white flex flex-col justify-between relative md:flex-1 overflow-hidden`}
-        style={{ padding: '40px 64px 40px 48px' }}
+        className={`${item.bg} text-white flex flex-col justify-between relative md:flex-1 overflow-hidden p-8 md:p-10 md:pl-12 md:pr-16`}
       >
         <div className="flex flex-col justify-between h-full">
           <div className="flex items-start justify-between">

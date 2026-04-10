@@ -28,11 +28,11 @@ export default function ClientsSection({ logos }: ClientsSectionProps) {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-white" style={{ padding: '160px 40px' }}>
+    <section ref={sectionRef} className="bg-white py-20 px-6 md:py-40 md:px-10">
       <div style={{ maxWidth: 1400, margin: '0 auto' }}>
         <h2
+          className="text-3xl md:text-[56px]"
           style={{
-            fontSize: 56,
             fontWeight: 700,
             color: '#171200',
             letterSpacing: '0.2em',
@@ -46,11 +46,10 @@ export default function ClientsSection({ logos }: ClientsSectionProps) {
           OUR CLIENTS
         </h2>
         <p
+          className="text-sm md:text-base mb-10 md:mb-16"
           style={{
             color: '#999',
             fontWeight: 300,
-            fontSize: 16,
-            marginBottom: 60,
             textAlign: 'center',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
@@ -59,15 +58,12 @@ export default function ClientsSection({ logos }: ClientsSectionProps) {
         >
           We believe every client is a valuable long-term partner.
         </p>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+        <div className="flex flex-wrap md:flex-nowrap items-center justify-center md:justify-between gap-6 md:gap-0 w-full">
           {logos.slice(0, 5).map((logo, i) => (
             <div
               key={i}
-              className="grayscale hover:grayscale-0 transition-all duration-500"
+              className="grayscale hover:grayscale-0 transition-all duration-500 w-[40%] md:w-[16%] h-[120px] md:h-[200px] flex-shrink-0"
               style={{
-                width: '16%',
-                height: 200,
-                flexShrink: 0,
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(50px) scale(0.8)',
                 transition: `opacity 0.6s ease-out ${0.3 + i * 0.15}s, transform 0.6s ease-out ${0.3 + i * 0.15}s`,
@@ -78,7 +74,7 @@ export default function ClientsSection({ logos }: ClientsSectionProps) {
                 alt={`Client ${i + 1}`}
                 width={400}
                 height={400}
-                sizes="15vw"
+                sizes="(max-width: 768px) 40vw, 15vw"
                 style={{ width: '100%', height: '100%', objectFit: 'contain', transform: 'scale(1.8)' }}
               />
             </div>

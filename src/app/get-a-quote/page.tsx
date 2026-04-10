@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function GetAQuotePage() {
   return (
-    <div className="pt-16">
+    <div style={{ paddingTop: 108 }}>
       <ContactSection />
     </div>
   );

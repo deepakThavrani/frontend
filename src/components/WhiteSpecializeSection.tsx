@@ -48,7 +48,7 @@ export default function WhiteSpecializeSection() {
           ref={sectionRef}
           className="relative z-10 min-h-screen flex items-center justify-center px-6"
         >
-          <p className="mx-auto text-center text-[clamp(1.5rem,4.5vw,4.5rem)] font-light leading-[1.15] tracking-tight whitespace-nowrap">
+          <p className="mx-auto text-center text-[clamp(1.5rem,4.5vw,4.5rem)] font-light leading-[1.15] tracking-tight md:whitespace-nowrap">
             {lines.map((line, lineIdx) => {
               const wordOffset = lines.slice(0, lineIdx).reduce((acc, l) => acc + l.length, 0);
               return (

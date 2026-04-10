@@ -23,26 +23,12 @@ const collageSection2 = [
   { src: "https://static.wixstatic.com/media/5dbb31_aff5253dcde14b33a582ade12594b76b~mv2.jpg/v1/fill/w_400,h_500,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/5dbb31_aff5253dcde14b33a582ade12594b76b~mv2.jpg", alt: "Interior scene", wide: false },
 ];
 
-const collageSection3 = [
-  { src: "https://static.wixstatic.com/media/5dbb31_989ba46f94db4f50ac16b9066f19ff0b~mv2.jpg/v1/fill/w_350,h_460,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/5dbb31_989ba46f94db4f50ac16b9066f19ff0b~mv2.jpg", alt: "Decorative render" },
-  { src: "https://static.wixstatic.com/media/5dbb31_c60a15c2a9f848aab3608ff9ca173b56~mv2.jpg/v1/fill/w_450,h_594,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/5dbb31_c60a15c2a9f848aab3608ff9ca173b56~mv2.jpg", alt: "Architectural visualization" },
-  { src: "https://static.wixstatic.com/media/5dbb31_5bc1450d67614fd59654efd366fbf176~mv2.jpeg/v1/fill/w_400,h_520,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/5dbb31_5bc1450d67614fd59654efd366fbf176~mv2.jpeg", alt: "Modern space" },
-];
-
-const galleryGrid = [
-  { src: "https://static.wixstatic.com/media/5dbb31_f5c6d9ed147c485ea71b6a131e6cbe93~mv2.jpg/v1/fill/w_500,h_560,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/5dbb31_f5c6d9ed147c485ea71b6a131e6cbe93~mv2.jpg", alt: "Project render 1" },
-  { src: "https://static.wixstatic.com/media/5dbb31_826a6df41ec64d2abad2c94855a1d6b9~mv2.jpg/v1/fill/w_500,h_252,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/5dbb31_826a6df41ec64d2abad2c94855a1d6b9~mv2.jpg", alt: "Building exterior" },
-  { src: "https://static.wixstatic.com/media/5dbb31_c8068fe1ad3f4e4eb3abb63df1119d4b~mv2.jpg/v1/fill/w_500,h_282,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/5dbb31_c8068fe1ad3f4e4eb3abb63df1119d4b~mv2.jpg", alt: "Commercial render" },
-  { src: "https://static.wixstatic.com/media/5dbb31_7cff247bf6b342f1b05bee60e1fb77a0~mv2.jpg/v1/fill/w_500,h_350,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/5dbb31_7cff247bf6b342f1b05bee60e1fb77a0~mv2.jpg", alt: "Interior panorama" },
-  { src: "https://static.wixstatic.com/media/5dbb31_f04a31f382f04d1daf760dbb5bfebf0a~mv2.jpg/v1/fill/w_500,h_350,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/5dbb31_f04a31f382f04d1daf760dbb5bfebf0a~mv2.jpg", alt: "Bedroom visualization" },
-  { src: "https://static.wixstatic.com/media/5dbb31_8f5a7c0defa740f7af7ed5beeb7d267d~mv2.jpg/v1/fill/w_500,h_350,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/5dbb31_8f5a7c0defa740f7af7ed5beeb7d267d~mv2.jpg", alt: "Living space render" },
-];
 
 export default function GalleryPage() {
   return (
     <div style={{ paddingTop: 108, backgroundColor: "#fff" }}>
       {/* Hero - Collage: scattered on desktop, grid on mobile */}
-      <section className="bg-white relative overflow-hidden h-[60vh] md:h-[calc(100vh-108px)]">
+      <section className="bg-white relative overflow-visible h-[60vh] md:h-[calc(100vh-108px)]">
         {/* Mobile: grid layout */}
         <div className="md:hidden grid grid-cols-2 gap-2 p-4 h-full">
           {[collageSection1[0], collageSection1[1], collageSection1[2], collageSection2[1]].map((img, i) => (
@@ -51,29 +37,33 @@ export default function GalleryPage() {
             </Link>
           ))}
         </div>
-        {/* Desktop: scattered absolute */}
-        <Link href="/" className="hidden md:block absolute overflow-hidden shadow-xl transition-all duration-500 hover:scale-105 hover:z-50 hover:shadow-2xl cursor-pointer" style={{ left: "3%", bottom: "0%", width: "22%", height: "70%", zIndex: 10 }}>
-          <Image src={collageSection1[0].src} alt={collageSection1[0].alt} fill sizes="22vw" className="object-cover" />
+        {/* Desktop: scattered absolute - matching reference layout */}
+        {/* Bottom-left small image - dark kitchen */}
+        <Link href="/" className="hidden md:block absolute overflow-hidden cursor-pointer" style={{ left: "11%", bottom: "-12%", width: "20%", height: "65%", zIndex: 25 }}>
+          <Image src="/gallery-bottom-left.jpg" alt="Kitchen interior" fill sizes="27vw" className="object-cover" />
         </Link>
-        <Link href="/" className="hidden md:block absolute overflow-hidden shadow-2xl transition-all duration-500 hover:scale-105 hover:z-50 hover:shadow-2xl cursor-pointer" style={{ left: "22%", top: "5%", width: "28%", height: "90%", zIndex: 20 }}>
-          <Image src={collageSection1[1].src} alt={collageSection1[1].alt} fill sizes="28vw" className="object-cover" />
+        {/* Center large image - bedroom */}
+        <Link href="/" className="hidden md:block absolute overflow-hidden cursor-pointer" style={{ left: "24%", top: "0%", width: "32%", height: "105%", zIndex: 20 }}>
+          <Image src={collageSection1[0].src} alt={collageSection1[0].alt} fill sizes="30vw" className="object-cover" />
         </Link>
-        <Link href="/" className="hidden md:block absolute overflow-hidden shadow-xl transition-all duration-500 hover:scale-105 hover:z-50 hover:shadow-2xl cursor-pointer" style={{ left: "48%", top: "10%", width: "22%", height: "80%", zIndex: 15 }}>
-          <Image src={collageSection1[2].src} alt={collageSection1[2].alt} fill sizes="22vw" className="object-cover" />
+        {/* Right-center image - exterior building */}
+        <Link href="/" className="hidden md:block absolute overflow-hidden cursor-pointer" style={{ left: "54%", top: "8%", width: "22%", height: "78%", zIndex: 15 }}>
+          <Image src="/gallery-exterior.jpg" alt="Exterior building" fill sizes="22vw" className="object-cover" />
         </Link>
-        <Link href="/" className="hidden md:block absolute overflow-hidden shadow-xl transition-all duration-500 hover:scale-105 hover:z-50 hover:shadow-2xl cursor-pointer" style={{ left: "68%", top: "3%", width: "18%", height: "55%", zIndex: 25 }}>
-          <Image src={collageSection2[1].src} alt={collageSection2[1].alt} fill sizes="18vw" className="object-cover" />
+        {/* Far right - orange kitchen */}
+        <Link href="/" className="hidden md:block absolute overflow-hidden cursor-pointer" style={{ right: "10%", top: "0%", width: "20%", height: "66%", zIndex: 10 }}>
+          <Image src={collageSection1[1].src} alt={collageSection1[1].alt} fill sizes="20vw" className="object-cover" />
         </Link>
       </section>
 
       {/* Gap */}
-      <div style={{ height: 40 }} />
+      <div style={{ height: 160 }} />
 
-      {/* Full Width Image */}
-      <section style={{ position: "relative", height: "70vh", margin: "0 3%", borderRadius: 16, overflow: "hidden" }}>
+      {/* Full Width Living Room Image */}
+      <section style={{ position: "relative", height: "100vh", width: "100%", overflow: "hidden", marginTop: 140 }}>
         <Image
-          src={collageSection2[0].src}
-          alt={collageSection2[0].alt}
+          src="/image2.png"
+          alt="Luxury living room interior"
           fill
           sizes="100vw"
           className="object-cover"
@@ -81,23 +71,23 @@ export default function GalleryPage() {
       </section>
 
       {/* Gap */}
-      <div style={{ height: 40 }} />
+      <div style={{ height: 160 }} />
 
       {/* Asymmetric Two Images */}
-      <section style={{ display: "grid", gridTemplateColumns: "1fr 1.5fr", gap: 20, padding: "0 3%", height: "70vh" }}>
-        <div style={{ position: "relative", borderRadius: 16, overflow: "hidden" }}>
+      <section style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 80, padding: "0 8%", height: "95vh" }}>
+        <div style={{ position: "relative", overflow: "hidden", width: "28%", height: "75%", flexShrink: 0, marginBottom: "5%" }}>
           <Image
-            src={collageSection2[1].src}
-            alt={collageSection2[1].alt}
+            src="/image3.png"
+            alt="Modern living room with cherry blossom"
             fill
-            sizes="40vw"
+            sizes="25vw"
             className="object-cover"
           />
         </div>
-        <div style={{ position: "relative", borderRadius: 16, overflow: "hidden" }}>
+        <div style={{ position: "relative", overflow: "hidden", width: "48%", height: "100%", flexShrink: 0 }}>
           <Image
-            src={collageSection2[2].src}
-            alt={collageSection2[2].alt}
+            src="/image.png"
+            alt="Luxury interior with pendant light"
             fill
             sizes="60vw"
             className="object-cover"
@@ -106,33 +96,38 @@ export default function GalleryPage() {
       </section>
 
       {/* Gap */}
-      <div style={{ height: 40 }} />
+      <div style={{ height: 160 }} />
 
-      {/* Collage Section 3 */}
-      <section style={{ padding: "0 3%" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
-          {collageSection3.map((img, i) => (
-            <div key={i} style={{ position: "relative", height: 450, borderRadius: 16, overflow: "hidden" }}>
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fill
-                sizes="33vw"
-                className="object-cover transition-transform duration-700 hover:scale-105"
-              />
-            </div>
-          ))}
+      {/* Two Images - Left and Right with Overlap */}
+      <section style={{ position: "relative", padding: "0 8%", height: "170vh" }}>
+        <div style={{ position: "absolute", overflow: "hidden", width: "60%", height: "100%", left: "8%", bottom: "-55%", zIndex: 10 }}>
+          <Image
+            src="/images/image.png"
+            alt="Modern glass building at night"
+            fill
+            sizes="50vw"
+            className="object-cover"
+          />
+        </div>
+        <div style={{ position: "absolute", overflow: "hidden", width: "58%", height: "100%", right: "8%", top: "0%", zIndex: 20 }}>
+          <Image
+            src="/images/image1.png"
+            alt="Commercial building exterior"
+            fill
+            sizes="55vw"
+            className="object-cover"
+          />
         </div>
       </section>
 
-      {/* Gap */}
-      <div style={{ height: 40 }} />
+      {/* Gap - extra for overflowing left image */}
+      <div style={{ height: 600 }} />
 
-      {/* Full Width Image */}
-      <section style={{ position: "relative", height: "70vh", margin: "0 3%", borderRadius: 16, overflow: "hidden" }}>
+      {/* Full Width Panoramic Image */}
+      <section style={{ position: "relative", height: "120vh", width: "100%", overflow: "hidden" }}>
         <Image
-          src={galleryGrid[0].src}
-          alt={galleryGrid[0].alt}
+          src="/images/imagen.png"
+          alt="Panoramic living room view"
           fill
           sizes="100vw"
           className="object-cover"
@@ -140,14 +135,53 @@ export default function GalleryPage() {
       </section>
 
       {/* Gap */}
-      <div style={{ height: 60 }} />
+      <div style={{ height: 160 }} />
+
+      {/* Two Bedroom Images - Large Left, Small Right */}
+      <section style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 60, padding: "0 8%", height: "120vh" }}>
+        <div style={{ position: "relative", overflow: "hidden", width: "48%", height: "100%", flexShrink: 0 }}>
+          <Image
+            src="/images/imagenow.png"
+            alt="Bedroom with chandelier"
+            fill
+            sizes="55vw"
+            className="object-cover"
+          />
+        </div>
+        <div style={{ position: "relative", overflow: "hidden", width: "38%", height: "30%", flexShrink: 0 }}>
+          <Image
+            src="/images/imagenow2.png"
+            alt="Bedroom detail view"
+            fill
+            sizes="30vw"
+            className="object-cover"
+          />
+        </div>
+      </section>
+
+      {/* Gap */}
+      <div style={{ height: 160 }} />
+
+      {/* Full Width Image - Luxury Living Space */}
+      <section style={{ position: "relative", height: "100vh", width: "100%", overflow: "hidden" }}>
+        <Image
+          src="/images/imagenext.png"
+          alt="Luxury living space with marble table"
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+      </section>
+
+      {/* Gap */}
+      <div style={{ height: 160 }} />
 
       {/* Download Profile */}
       <div className="bg-white">
         <DownloadProfile />
       </div>
 
-      <div style={{ height: 80 }} />
+      <div style={{ height: 160 }} />
 
       {/* Contact Section */}
       <ContactSection />

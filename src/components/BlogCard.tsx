@@ -29,7 +29,7 @@ export default function BlogCard({ blog }: { blog: Blog }) {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-          <div className="absolute top-4 left-4 bg-[#E02222] text-white text-[10px] font-bold px-3 py-1.5 uppercase tracking-widest rounded-full">
+          <div className="absolute top-4 left-4 bg-[#E02222]/95 backdrop-blur-sm text-white text-[10px] font-bold px-4 py-[7px] uppercase tracking-[0.18em] rounded shadow-lg inline-flex items-center justify-center border border-white/20">
             {blog.category}
           </div>
           <div className="absolute bottom-3 left-4 text-white/90 text-xs font-medium tracking-wide">
