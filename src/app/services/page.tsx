@@ -16,9 +16,9 @@ export default function ServicesPage() {
   return (
     <div className="pt-[108px]">
       {/* Hero - Exterior Rendering */}
-      <section className="relative bg-white text-black overflow-hidden pt-8 md:pt-0 md:h-[calc(100vh-10px)]">
-        <div className="flex flex-col md:flex-row h-full md:min-h-0 gap-10 md:gap-0">
-          <div className="w-full md:w-1/2 flex items-center pt-8 pb-4 md:py-0 px-6 md:pl-[8vw] md:pr-[4vw]">
+      <section className="relative bg-white text-black overflow-hidden pt-16 md:pt-0 md:h-[calc(100vh-10px)]">
+        <div className="flex flex-col md:flex-row h-full md:min-h-0 gap-12 md:gap-0">
+          <div className="w-full md:w-1/2 flex items-center pt-4 pb-6 md:py-0 px-6 md:pl-[8vw] md:pr-[4vw]">
             <ScrollReveal>
               <div className="max-w-md">
                 <h1 className="text-3xl md:text-4xl font-semibold mb-6 md:mb-10 text-[#171200]">

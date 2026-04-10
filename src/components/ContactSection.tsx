@@ -66,6 +66,7 @@ export default function ContactSection() {
     <section
       id="contact"
       className="bg-white relative"
+      style={{ paddingTop: "160px" }}
     >
       {/* Grid on right side only - desktop */}
       <div

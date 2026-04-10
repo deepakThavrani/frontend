@@ -28,7 +28,7 @@ export default function ClientsSection({ logos }: ClientsSectionProps) {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-white py-20 px-6 md:py-40 md:px-10">
+    <section ref={sectionRef} className="bg-white pt-20 pb-24 px-6 md:pt-40 md:pb-56 md:px-10">
       <div style={{ maxWidth: 1400, margin: '0 auto' }}>
         <h2
           className="text-3xl md:text-[56px]"
