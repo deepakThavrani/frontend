@@ -58,11 +58,11 @@ export default function Footer() {
           </div>
 
           {/* Right - Contact Info */}
-          <div className="text-center md:text-right" style={{ fontSize: 15 }}>
+          <div className="text-left" style={{ fontSize: 15 }}>
             <p style={{ fontWeight: 700, color: '#000' }}>info@lexxusmoon.com</p>
-            <p style={{ color: '#333' }}>Tel. +91 77339 99372</p>
-            <p style={{ color: '#333' }}>Office 505, Trimurty Tower</p>
-            <p style={{ color: '#333' }}>Jaipur-302012</p>
+            <p style={{ color: '#000', fontWeight: 500 }}>Tel. +91 77339 99372</p>
+            <p style={{ color: '#000', fontWeight: 500 }}>Office 505, Trimurty Tower</p>
+            <p style={{ color: '#000', fontWeight: 500 }}>Jaipur-302012</p>
           </div>
         </div>
       </div>

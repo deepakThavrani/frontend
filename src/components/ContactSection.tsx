@@ -110,7 +110,10 @@ export default function ContactSection() {
         </div>
 
         {/* Right - Contact Form */}
-        <div className="w-full md:w-[50%] py-10 md:py-16 px-5 md:px-14 relative">
+        <div
+          className="w-full md:w-[50%] py-10 md:py-16 md:px-14 relative"
+          style={{ paddingLeft: "24px", paddingRight: "24px" }}
+        >
           {success ? (
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", minHeight: 400 }}>
               <div style={{

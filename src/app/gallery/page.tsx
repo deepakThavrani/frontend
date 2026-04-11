@@ -16,26 +16,30 @@ const collageSection1 = [
   { src: "https://static.wixstatic.com/media/5dbb31_5414df7a3c784767bd1bd761101bff0b~mv2.webp/v1/fill/w_400,h_580,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/5dbb31_5414df7a3c784767bd1bd761101bff0b~mv2.webp", alt: "Interior design", wide: false },
 ];
 
-const collageSection2 = [
-  { src: "https://static.wixstatic.com/media/5dbb31_d7c28816140e4a5bb4097359a223af67~mv2.jpg/v1/fill/w_700,h_355,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/5dbb31_d7c28816140e4a5bb4097359a223af67~mv2.jpg", alt: "Bedroom render", wide: true },
-  { src: "https://static.wixstatic.com/media/5dbb31_65d410a7598646c2a782cc6ef99069fc~mv2.jpg/v1/fill/w_400,h_324,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/5dbb31_65d410a7598646c2a782cc6ef99069fc~mv2.jpg", alt: "Living room", wide: false },
-  { src: "https://static.wixstatic.com/media/5dbb31_549abf80215d44f3a81663e8f2dd8cc5~mv2.jpg/v1/fill/w_400,h_500,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/5dbb31_549abf80215d44f3a81663e8f2dd8cc5~mv2.jpg", alt: "Modern bedroom", wide: false },
-  { src: "https://static.wixstatic.com/media/5dbb31_aff5253dcde14b33a582ade12594b76b~mv2.jpg/v1/fill/w_400,h_500,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/5dbb31_aff5253dcde14b33a582ade12594b76b~mv2.jpg", alt: "Interior scene", wide: false },
-];
-
 
 export default function GalleryPage() {
   return (
     <div style={{ paddingTop: 108, backgroundColor: "#fff" }}>
       {/* Hero - Collage: scattered on desktop, grid on mobile */}
-      <section className="bg-white relative overflow-visible h-[60vh] md:h-[calc(100vh-108px)]">
-        {/* Mobile: grid layout */}
-        <div className="md:hidden grid grid-cols-2 gap-2 p-4 h-full">
-          {[collageSection1[0], collageSection1[1], collageSection1[2], collageSection2[1]].map((img, i) => (
-            <Link key={i} href="/" className="relative overflow-hidden rounded-xl h-full">
-              <Image src={img.src} alt={img.alt} fill sizes="50vw" className="object-cover" />
-            </Link>
-          ))}
+      <section className="bg-white relative overflow-visible h-[75vh] md:h-[calc(100vh-108px)]">
+        {/* Mobile: scattered collage like desktop */}
+        <div className="md:hidden relative w-full h-full">
+          {/* Large center bedroom */}
+          <Link href="/" className="absolute overflow-hidden" style={{ left: "18%", top: "2%", width: "55%", height: "70%", zIndex: 20 }}>
+            <Image src={collageSection1[0].src} alt={collageSection1[0].alt} fill sizes="55vw" className="object-cover" />
+          </Link>
+          {/* Bottom-left small kitchen */}
+          <Link href="/" className="absolute overflow-hidden" style={{ left: "3%", bottom: "3%", width: "32%", height: "42%", zIndex: 25 }}>
+            <Image src="/gallery-bottom-left.jpg" alt="Kitchen interior" fill sizes="32vw" className="object-cover" />
+          </Link>
+          {/* Right exterior */}
+          <Link href="/" className="absolute overflow-hidden" style={{ right: "3%", top: "15%", width: "30%", height: "55%", zIndex: 15 }}>
+            <Image src="/gallery-exterior.jpg" alt="Exterior building" fill sizes="30vw" className="object-cover" />
+          </Link>
+          {/* Bottom right orange kitchen */}
+          <Link href="/" className="absolute overflow-hidden" style={{ right: "5%", bottom: "5%", width: "28%", height: "38%", zIndex: 10 }}>
+            <Image src={collageSection1[1].src} alt={collageSection1[1].alt} fill sizes="28vw" className="object-cover" />
+          </Link>
         </div>
         {/* Desktop: scattered absolute - matching reference layout */}
         {/* Bottom-left small image - dark kitchen */}
@@ -57,10 +61,10 @@ export default function GalleryPage() {
       </section>
 
       {/* Gap */}
-      <div style={{ height: 160 }} />
+      <div className="h-12 md:h-40" />
 
       {/* Full Width Living Room Image */}
-      <section style={{ position: "relative", height: "100vh", width: "100%", overflow: "hidden", marginTop: 140 }}>
+      <section className="relative w-full overflow-hidden h-[50vh] md:h-[100vh] mt-16 md:mt-[140px]">
         <Image
           src="/image2.png"
           alt="Luxury living room interior"
@@ -71,60 +75,63 @@ export default function GalleryPage() {
       </section>
 
       {/* Gap */}
-      <div style={{ height: 160 }} />
+      <div className="h-12 md:h-40" />
 
-      {/* Asymmetric Two Images */}
-      <section style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 80, padding: "0 8%", height: "95vh" }}>
-        <div style={{ position: "relative", overflow: "hidden", width: "28%", height: "75%", flexShrink: 0, marginBottom: "5%" }}>
+      {/* Asymmetric Two Images - small left bottom, big right top */}
+      <section
+        className="flex flex-row items-center md:items-start justify-between gap-3 md:gap-20 md:px-[8%] h-[55vh] md:h-[95vh]"
+        style={{ paddingLeft: "50px", paddingRight: "12px" }}
+      >
+        <div className="relative overflow-hidden w-[32%] md:w-[28%] h-[40%] md:h-[75%] flex-shrink-0 md:self-end md:mb-[5%]">
           <Image
             src="/image3.png"
             alt="Modern living room with cherry blossom"
             fill
-            sizes="25vw"
+            sizes="(max-width: 768px) 32vw, 25vw"
             className="object-cover"
           />
         </div>
-        <div style={{ position: "relative", overflow: "hidden", width: "48%", height: "100%", flexShrink: 0 }}>
+        <div className="relative overflow-hidden w-[50%] md:w-[48%] h-full flex-shrink-0">
           <Image
             src="/image.png"
             alt="Luxury interior with pendant light"
             fill
-            sizes="60vw"
+            sizes="(max-width: 768px) 50vw, 60vw"
             className="object-cover"
           />
         </div>
       </section>
 
       {/* Gap */}
-      <div style={{ height: 160 }} />
+      <div className="h-12 md:h-40" />
 
       {/* Two Images - Left and Right with Overlap */}
-      <section style={{ position: "relative", padding: "0 8%", height: "170vh" }}>
-        <div style={{ position: "absolute", overflow: "hidden", width: "60%", height: "100%", left: "8%", bottom: "-55%", zIndex: 10 }}>
+      <section className="relative h-[80vh] md:h-[170vh] px-3 md:px-0">
+        <div className="absolute overflow-hidden left-[3%] bottom-[-15%] w-[60%] h-[55%] z-10 md:left-[8%] md:bottom-[-55%] md:w-[60%] md:h-full">
           <Image
             src="/images/image.png"
             alt="Modern glass building at night"
             fill
-            sizes="50vw"
+            sizes="(max-width: 768px) 60vw, 50vw"
             className="object-cover"
           />
         </div>
-        <div style={{ position: "absolute", overflow: "hidden", width: "58%", height: "100%", right: "8%", top: "0%", zIndex: 20 }}>
+        <div className="absolute overflow-hidden right-[3%] top-[5%] w-[55%] h-[80%] z-20 md:right-[8%] md:top-0 md:w-[58%] md:h-full">
           <Image
             src="/images/image1.png"
             alt="Commercial building exterior"
             fill
-            sizes="55vw"
+            sizes="(max-width: 768px) 55vw, 55vw"
             className="object-cover"
           />
         </div>
       </section>
 
       {/* Gap - extra for overflowing left image */}
-      <div style={{ height: 600 }} />
+      <div className="h-32 md:h-[600px]" />
 
       {/* Full Width Panoramic Image */}
-      <section style={{ position: "relative", height: "120vh", width: "100%", overflow: "hidden" }}>
+      <section className="relative w-full overflow-hidden h-[50vh] md:h-[120vh]">
         <Image
           src="/images/imagen.png"
           alt="Panoramic living room view"
@@ -135,35 +142,35 @@ export default function GalleryPage() {
       </section>
 
       {/* Gap */}
-      <div style={{ height: 160 }} />
+      <div className="h-12 md:h-40" />
 
       {/* Two Bedroom Images - Large Left, Small Right */}
-      <section style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 60, padding: "0 8%", height: "120vh" }}>
-        <div style={{ position: "relative", overflow: "hidden", width: "48%", height: "100%", flexShrink: 0 }}>
+      <section className="flex flex-row items-center justify-between gap-3 md:gap-[60px] px-3 md:px-[8%] h-[60vh] md:h-[120vh]">
+        <div className="relative overflow-hidden w-[55%] md:w-[48%] h-full md:h-full flex-shrink-0">
           <Image
             src="/images/imagenow.png"
             alt="Bedroom with chandelier"
             fill
-            sizes="55vw"
+            sizes="(max-width: 768px) 55vw, 55vw"
             className="object-cover"
           />
         </div>
-        <div style={{ position: "relative", overflow: "hidden", width: "38%", height: "30%", flexShrink: 0 }}>
+        <div className="relative overflow-hidden w-[35%] md:w-[38%] h-[35%] md:h-[30%] flex-shrink-0">
           <Image
             src="/images/imagenow2.png"
             alt="Bedroom detail view"
             fill
-            sizes="30vw"
+            sizes="(max-width: 768px) 35vw, 30vw"
             className="object-cover"
           />
         </div>
       </section>
 
       {/* Gap */}
-      <div style={{ height: 160 }} />
+      <div className="h-12 md:h-40" />
 
       {/* Full Width Image - Luxury Living Space */}
-      <section style={{ position: "relative", height: "100vh", width: "100%", overflow: "hidden" }}>
+      <section className="relative w-full overflow-hidden h-[50vh] md:h-[100vh]">
         <Image
           src="/images/imagenext.png"
           alt="Luxury living space with marble table"
@@ -174,14 +181,14 @@ export default function GalleryPage() {
       </section>
 
       {/* Gap */}
-      <div style={{ height: 160 }} />
+      <div className="h-12 md:h-40" />
 
       {/* Download Profile */}
       <div className="bg-white">
         <DownloadProfile />
       </div>
 
-      <div style={{ height: 160 }} />
+      <div className="h-12 md:h-40" />
 
       {/* Contact Section */}
       <ContactSection />

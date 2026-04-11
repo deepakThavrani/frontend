@@ -15,9 +15,19 @@ export default function StickyTextWithImages({ images }: StickyTextWithImagesPro
   const containerRef = useRef<HTMLDivElement>(null);
   const totalImages = images.length;
   const [textVisible, setTextVisible] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const mobileImageRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return;
     const observer = new IntersectionObserver(
       () => {
         // Check if ANY image is currently visible
@@ -36,8 +46,100 @@ export default function StickyTextWithImages({ images }: StickyTextWithImagesPro
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [isMobile]);
 
+  // Mobile scroll-driven scale effect
+  useEffect(() => {
+    if (!isMobile) return;
+    const handleScroll = () => {
+      const viewportH = window.innerHeight;
+      mobileImageRefs.current.forEach((ref) => {
+        if (!ref) return;
+        const rect = ref.getBoundingClientRect();
+        const elCenter = rect.top + rect.height / 2;
+        const viewportCenter = viewportH / 2;
+        // distance from viewport center, normalized
+        const distance = elCenter - viewportCenter;
+        // when image is below viewport: scale 1, when at top of viewport: scale 0.4
+        let scale = 1;
+        if (distance < 0) {
+          // image moving above center, shrink
+          const ratio = Math.min(1, Math.abs(distance) / viewportH);
+          scale = Math.max(0.35, 1 - ratio * 0.65);
+        }
+        ref.style.transform = `scale(${scale})`;
+        ref.style.opacity = String(Math.max(0.5, scale));
+      });
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isMobile]);
+
+  // ─── MOBILE LAYOUT ───
+  if (isMobile) {
+    return (
+      <section
+        className="relative overflow-x-clip"
+        style={{
+          background:
+            "linear-gradient(180deg, #e8b8b3 0%, #d6a59f 50%, #c4928c 100%)",
+        }}
+      >
+        {/* Heading - scrolls with content */}
+        <div className="px-6 pt-24 pb-12 text-center">
+          <h2 className="text-[#171200] text-[10vw] leading-[1.05] font-light">
+            <span style={{ fontFamily: "var(--font-poppins), sans-serif" }}>
+              Transform your
+            </span>
+            <br />
+            <span className="font-serif-italic font-bold text-[#e50914]">
+              Architectural
+            </span>{" "}
+            <span style={{ fontFamily: "var(--font-poppins), sans-serif" }}>
+              ideas
+            </span>
+            <br />
+            <span style={{ fontFamily: "var(--font-poppins), sans-serif" }}>
+              into Stunning
+            </span>
+            <br />
+            <span className="font-serif-italic font-bold text-[#e50914]">
+              Visuals
+            </span>
+          </h2>
+        </div>
+
+        {/* Images stacked, scroll-driven scale */}
+        <div className="flex flex-col items-center gap-12 pb-24">
+          {images.map((img, i) => (
+            <div
+              key={i}
+              ref={(el) => {
+                mobileImageRefs.current[i] = el;
+              }}
+              className="relative overflow-hidden rounded-2xl shadow-2xl"
+              style={{
+                width: "75vw",
+                height: "55vh",
+                transformOrigin: "center center",
+                transition: "transform 0.1s linear, opacity 0.1s linear",
+                willChange: "transform, opacity",
+              }}
+            >
+              <img
+                src={img.src}
+                alt={img.alt}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  // ─── DESKTOP LAYOUT (unchanged) ───
   return (
     <section
       ref={containerRef}

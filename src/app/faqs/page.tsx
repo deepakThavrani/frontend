@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 import ContactSection from "@/components/ContactSection";
 import DownloadProfile from "@/components/DownloadProfile";
@@ -75,7 +75,10 @@ export default function FAQsPage() {
   return (
     <div style={{ paddingTop: "108px" }}>
       {/* Hero Banner */}
-      <section className="flex items-center justify-center bg-white h-[50vh] md:h-[calc(100vh-108px)]" style={{ padding: "30px 60px" }}>
+      <section
+        className="flex items-center justify-center bg-white md:h-[calc(100vh-108px)]"
+        style={{ height: "100vh", padding: "30px 20px" }}
+      >
         <div className="relative w-full h-full overflow-hidden">
           <Image
             src="https://static.wixstatic.com/media/5dbb31_c701e5e867964006a1b1448a3145d18e~mv2.jpg/v1/fill/w_1920,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/5dbb31_c701e5e867964006a1b1448a3145d18e~mv2.jpg"
@@ -83,28 +86,44 @@ export default function FAQsPage() {
             fill
             sizes="100vw"
             priority
-            className="object-cover object-bottom"
+            className="object-cover"
           />
-          <div className="absolute inset-0 flex items-end justify-end p-8 md:p-16">
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-right leading-tight overflow-hidden">
+          <div className="absolute inset-0 flex items-center justify-center md:items-end md:justify-end md:p-16 px-6">
+            <h2
+              className="text-3xl md:text-5xl lg:text-6xl font-bold text-white text-center md:text-right leading-tight md:!text-[70px]"
+              style={{ textShadow: "0 2px 20px rgba(0,0,0,0.5)", color: "#ffffff" }}
+            >
               <span
-                className="block transition-all duration-1000 ease-out"
+                className="block transition-all duration-1000 ease-out md:!mr-[120px]"
                 style={{
                   opacity: heroVisible ? 1 : 0,
                   transform: heroVisible ? "translateY(0)" : "translateY(100%)",
+                  color: "#ffffff",
                 }}
               >
-                Architectural Brilliance
+                Architectural
               </span>
               <span
                 className="block transition-all duration-1000 ease-out"
                 style={{
                   opacity: heroVisible ? 1 : 0,
                   transform: heroVisible ? "translateY(0)" : "translateY(100%)",
-                  transitionDelay: "300ms",
+                  transitionDelay: "200ms",
+                  color: "#ffffff",
                 }}
               >
-                Deserves Brilliant Visuals
+                Brilliance Deserves
+              </span>
+              <span
+                className="block transition-all duration-1000 ease-out md:!mr-[80px]"
+                style={{
+                  opacity: heroVisible ? 1 : 0,
+                  transform: heroVisible ? "translateY(0)" : "translateY(100%)",
+                  transitionDelay: "400ms",
+                  color: "#ffffff",
+                }}
+              >
+                Brilliant Visuals
               </span>
             </h2>
           </div>
@@ -112,7 +131,10 @@ export default function FAQsPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="bg-white text-black px-4 py-12 md:px-[10%]" style={{ paddingTop: 80, paddingBottom: 120 }}>
+      <section
+        className="bg-white text-black md:px-[10%]"
+        style={{ paddingTop: 80, paddingBottom: 120, paddingLeft: "24px", paddingRight: "24px" }}
+      >
         <div style={{ maxWidth: "900px", margin: "0 auto" }}>
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
             <h1 className="text-3xl md:text-4xl font-bold leading-tight text-[#171200]">
@@ -120,13 +142,13 @@ export default function FAQsPage() {
               <br />
               questions
             </h1>
-            <div className="relative">
+            <div className="relative w-full md:w-auto">
               <input
                 type="text"
                 placeholder="Looking for something?"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="border-b border-gray-300 py-2 pr-8 pl-2 focus:outline-none focus:border-[#E02222] transition-colors text-sm w-64 bg-transparent"
+                className="border-b border-gray-300 py-2 pr-8 pl-2 focus:outline-none focus:border-[#E02222] transition-colors text-sm w-full md:w-64 bg-transparent"
               />
               <svg
                 className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400"
@@ -155,53 +177,43 @@ export default function FAQsPage() {
             {filteredFaqs.map((faq) => (
               <div
                 key={faq.id}
-                style={{ display: "flex", border: "1px solid #e5e7eb", overflow: "hidden" }}
+                className="flex border border-gray-200 overflow-hidden"
               >
                 {/* Red number badge */}
-                <div className="hidden md:flex" style={{
-                    backgroundColor: "#E02222",
-                    minWidth: "70px",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: "white",
-                    fontWeight: "bold",
-                    fontSize: "18px",
-                  }}>
+                <div
+                  className="flex items-center justify-center text-white font-bold shrink-0 min-w-[56px] md:min-w-[120px] text-xl md:text-[32px]"
+                  style={{ backgroundColor: "#E02222" }}
+                >
                   {faq.id}
                 </div>
                 {/* Content */}
-                <div style={{ flex: 1, backgroundColor: "#f9fafb" }}>
+                <div className="flex-1 min-w-0" style={{ backgroundColor: "#f9fafb" }}>
                   <button
-                    onClick={() =>
-                      setOpenId(openId === faq.id ? null : faq.id)
-                    }
-                    style={{
-                      width: "100%",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "16px",
-                      padding: "16px 16px",
-                      textAlign: "left",
-                      background: "transparent",
-                      border: "none",
-                      cursor: "pointer",
-                    }}
+                    onClick={() => setOpenId(openId === faq.id ? null : faq.id)}
+                    className="w-full flex items-center gap-3 md:gap-6 p-4 md:p-9 text-left bg-transparent border-none cursor-pointer"
                   >
-                    <span style={{ flex: 1, fontSize: "15px", fontWeight: 500, color: "#171200" }}>
+                    <span className="flex-1 text-sm md:text-[22px] font-medium text-[#171200]">
                       {faq.question}
                     </span>
                     <ChevronDown
-                      size={20}
+                      size={24}
                       className={`text-gray-400 transition-transform duration-300 shrink-0 ${
                         openId === faq.id ? "rotate-180" : ""
                       }`}
                     />
                   </button>
-                  {openId === faq.id && (
-                    <div style={{ padding: "0 24px 20px", fontSize: "14px", color: "#5f6360", lineHeight: 1.7 }}>
+                  <div
+                    style={{
+                      maxHeight: openId === faq.id ? "300px" : "0px",
+                      opacity: openId === faq.id ? 1 : 0,
+                      overflow: "hidden",
+                      transition: "max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease",
+                    }}
+                  >
+                    <div className="px-4 pb-4 md:px-9 md:pb-8 text-sm md:text-[18px] text-[#5f6360] leading-relaxed">
                       {faq.answer}
                     </div>
-                  )}
+                  </div>
                 </div>
               </div>
             ))}

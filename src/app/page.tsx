@@ -60,7 +60,7 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative h-screen bg-black overflow-hidden">
+      <section className="relative h-[60vh] md:h-screen bg-black overflow-hidden">
         <div
           className="absolute inset-0"
           style={{
@@ -73,7 +73,7 @@ export default function Home() {
 
         {/* LEXXUS - top left */}
         <h1
-          className="absolute top-[18%] left-[5%] text-[3.5rem] sm:text-[4.5rem] md:text-[4rem] lg:text-[5.5rem] font-bold tracking-wider text-white leading-none z-10 uppercase"
+          className="absolute top-[35%] md:top-[18%] left-[5%] text-[3.5rem] sm:text-[4.5rem] md:text-[4rem] lg:text-[5.5rem] font-bold tracking-wider text-white leading-none z-10 uppercase"
           style={{ animation: 'slideFromLeft 1.2s ease-out forwards', opacity: 0 }}
         >
           LEXXUS

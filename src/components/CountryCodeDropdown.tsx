@@ -195,10 +195,8 @@ export default function CountryCodeDropdown({ value, onChange }: CountryCodeDrop
           whiteSpace: "nowrap",
         }}
       >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#555" strokeWidth="1.8">
-          <circle cx="12" cy="12" r="10" />
-          <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-        </svg>
+        <FlagImg iso={selected.iso} size={20} />
+        <span style={{ fontSize: 14, color: "#171200", fontWeight: 500 }}>{selected.code}</span>
         <span style={{ fontSize: 10, color: "#666" }}>▾</span>
       </button>
 

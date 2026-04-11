@@ -58,7 +58,8 @@ export default function DesignsShowcase() {
   return (
     <section
       ref={sectionRef}
-      className="bg-white text-black md:min-h-screen flex flex-col items-center px-6 pt-24 pb-20 md:pt-32 md:pb-20 overflow-hidden"
+      className="bg-white text-black md:min-h-screen flex flex-col items-center pt-32 pb-20 md:pt-32 md:pb-20 overflow-hidden"
+      style={{ paddingLeft: "48px", paddingRight: "48px" }}
     >
       {/* Heading */}
       <h2
@@ -76,7 +77,7 @@ export default function DesignsShowcase() {
       {/* 3-column layout */}
       <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-[1fr_1.5fr_1fr] gap-12 md:gap-8 items-center flex-1 mt-12 md:mt-0">
         {/* Left categories */}
-        <div className="flex flex-col gap-8 md:gap-12">
+        <div className="flex flex-col gap-8 md:gap-12 order-2 md:order-1">
           {left.map((cat, i) => (
             <div
               key={i}
@@ -99,10 +100,8 @@ export default function DesignsShowcase() {
                 {cat.title}
               </h3>
               <p
-                className="text-black text-sm leading-relaxed font-light transition-all duration-300"
-                style={{
-                  opacity: hoveredIndex === i ? 1 : 0.7,
-                }}
+                className="text-black text-sm leading-relaxed font-normal transition-all duration-300"
+                style={{ opacity: 1 }}
               >
                 {cat.description}
               </p>
@@ -118,7 +117,7 @@ export default function DesignsShowcase() {
 
         {/* Center - Laptop Mockup */}
         <div
-          className="flex items-center justify-center cursor-pointer"
+          className="flex items-center justify-center cursor-pointer order-1 md:order-2"
           onMouseEnter={() => { setLaptopHovered(true); videoRef.current?.pause(); }}
           onMouseLeave={() => { setLaptopHovered(false); videoRef.current?.play(); }}
           style={{
@@ -175,7 +174,7 @@ export default function DesignsShowcase() {
         </div>
 
         {/* Right categories */}
-        <div className="flex flex-col gap-8 md:gap-12">
+        <div className="flex flex-col gap-8 md:gap-12 order-3 md:order-3">
           {right.map((cat, i) => (
             <div
               key={i}
@@ -198,10 +197,8 @@ export default function DesignsShowcase() {
                 {cat.title}
               </h3>
               <p
-                className="text-black text-sm leading-relaxed font-light transition-all duration-300"
-                style={{
-                  opacity: hoveredIndex === i + 2 ? 1 : 0.7,
-                }}
+                className="text-black text-sm leading-relaxed font-normal transition-all duration-300"
+                style={{ opacity: 1 }}
               >
                 {cat.description}
               </p>
